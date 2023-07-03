@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Form Submission</title>
+</head>
+<body>
+  <h1>Form for Employees</h1>
+
+  <form action="/submit" method="POST">
+    <label for="Date" >Date: </label>
+    <input type="datetime-local" id="Date" name="Date"><br>
+    <br>
+    <label for="emp_name" >Employee Name:</label>
+    <input type="text" id="emp_name" name="emp_name" required size="25"><br>
+    <br>
+    <label for="Company_name" >Company Name:</label>
+    <input type="text" id="Company_name" name="Company_name" required size="25"><br>
+    <br>
+    <label for="Customer_name" >Customer Name:</label>
+    <input type="text" id="Customer_name" name="Customer_name" required size="25"><br>
+    <br>
+    <label for="Meeting_time" >Meeting Time:</label>
+    <input type="datetime-local" id="Meeting_time" name="Meeting_time" required size="25"><br>
+    <br>
+    <label for="message">Message:</label>
+    <textarea id="message" name="message" required></textarea><br>
+    <br>
+    <label for="Follow_up">Follow Up On:</label>
+    <input type="datetime-local" id="Follow_up" name="Follow_up" required size="25"><br>
+    <br>
+    <input type="submit" value="Submit">
+  </form>
+</body>
+</html>
