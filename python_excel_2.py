@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request,session,redirect,url_for
 from openpyxl import load_workbook,Workbook
 import datetime
-from forms import SignInForm
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret-key'
@@ -20,11 +19,19 @@ users = {'divya':'password','suresh':'password'}
 
 @app.route('/signin',methods=['GET','POST'])
 def signin():
-    form = SignInForm()
-    if form.is_submitted():
-        result = request.form()
-        return render_template('user.html',result = result)
-    return render_template('signin.html',form=form)
+    return render_template('signin_2.html')
+
+@app.route('/submited', methods=['POST'])
+def submited():
+    # To get data from the form
+    result1 = request.form['username']
+    result2 = request.form['password']
+
+    if result1 in users:
+        if result2 == users[result1]:
+            return "Successfully logged in"
+        
+        return 'Log in unsuccessful!'
 
 @app.route('/submit', methods=['POST'])
 def submit():

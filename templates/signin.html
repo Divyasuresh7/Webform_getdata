@@ -1,16 +1,19 @@
-{% extends "base.html" %}
-{% block content %}
-<h2> Sign In </h2>
-<form action="/signin",method ="POST">
-    <p>
-        {{form.username.label}} <br>
-        {{form.username(size=30)}}
-    </p>
-    <p>
-        {{form.password.label}} <br>
-        {{form.password(size=30)}}
-    </p>
-    <p>{{form.submit()}}</p>
-</form>
-{% endblock %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login Submission </title>
+</head>
+<body>
+  <h1>Login Page </h1>
 
+  <form action="/submited" method="POST">
+    <label for="username" >Username:</label>
+    <input type="text" id="username" name="username" required size="25"><br>
+    <br>
+    <label for="password" >Password:</label>
+    <input type="password" id="password" name="password" required size="25"><br>
+    <br>
+    <input type="submit" value="Submit">
+  </form>
+</body>
+</html>
