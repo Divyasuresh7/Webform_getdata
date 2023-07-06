@@ -1,6 +1,9 @@
-from flask import Flask, render_template, request,session,redirect,url_for
+from flask import Flask, render_template, request,redirect,url_for
 from openpyxl import load_workbook,Workbook
 import datetime
+import pandas as pd
+import csv
+
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret-key'
@@ -27,11 +30,19 @@ def submited():
     result1 = request.form['username']
     result2 = request.form['password']
 
-    if result1 in users:
-        if result2 == users[result1]:
-            return "Successfully logged in"
-        
-        return 'Log in unsuccessful!'
+    def validate_credentials(username, password):
+        with open('username_password.csv', 'r') as file:
+            reader = csv.reader(file)
+            for row in reader:
+                stored_username = row[0]
+                stored_password = row[1]
+                if username == stored_username and password == stored_password:
+                    return True
+        return False
+    if validate_credentials(result1,result2):
+        return "Login successful!"
+    else:
+        return "Invalid username or password."
 
 @app.route('/submit', methods=['POST'])
 def submit():
@@ -82,3 +93,4 @@ def submit():
 
 if __name__ == '__main__':
     app.run()
+
