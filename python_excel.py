@@ -18,8 +18,6 @@ def home():
 def signup():
     return render_template('new_web_form.html')
 
-users = {'divya':'password','suresh':'password'}
-
 @app.route('/signin',methods=['GET','POST'])
 def signin():
     return render_template('signin_2.html')
@@ -40,7 +38,7 @@ def submited():
                     return True
         return False
     if validate_credentials(result1,result2):
-        return "Login successful!"
+        return signup()
     else:
         return "Invalid username or password."
 
@@ -93,4 +91,5 @@ def submit():
 
 if __name__ == '__main__':
     app.run()
+
 
