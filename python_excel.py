@@ -4,7 +4,6 @@ import datetime
 import pandas as pd
 import csv
 
-
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret-key'
 EXCEL_FILE_NAME = 'form_data.xlsx'
