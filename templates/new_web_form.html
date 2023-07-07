@@ -3,32 +3,108 @@
 <head>
   <title>Form Submission</title>
 </head>
-<body>
-  <h1>Form for Employees</h1>
+<style>
+  h1 {
+    text-align: center;
+    transition: ease-in;
+  }
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f2f2f2;
+    text-align: center;
+  }
+  label {
+    display: block;
+    margin-bottom: 10px;
+    color: #333333;
+  }
+  form {
+      margin-bottom: 20px;
+  }
+  .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+  }
+  .form-container {
+      width: 400px;
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+  .image-container {
+      width: 400px;
+      text-align: center;
+  }
+  img {
+      max-width: 100%;
+      height: auto;
+  }
+  input[type="text"],
+  textarea,
+  input[type="datetime-local"] {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #cccccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      font-family: inherit;
+  }
+  textarea {
+      height: 100px;
+      resize: vertical;
+  }
+  input[type="submit"] {
+      background-color: #4285F4;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+    input[type="submit"]:hover {
+      background-color: #3367D6;
+      text-align: center;
+    }
 
-  <form action="/submit" method="POST">
-    <label for="Date" >Date: </label>
-    <input type="datetime-local" id="Date" name="Date"><br>
-    <br>
-    <label for="emp_name" >Employee Name:</label>
-    <input type="text" id="emp_name" name="emp_name" required size="25"><br>
-    <br>
-    <label for="Company_name" >Company Name:</label>
-    <input type="text" id="Company_name" name="Company_name" required size="25"><br>
-    <br>
-    <label for="Customer_name" >Customer Name:</label>
-    <input type="text" id="Customer_name" name="Customer_name" required size="25"><br>
-    <br>
-    <label for="Meeting_time" >Meeting Time:</label>
-    <input type="datetime-local" id="Meeting_time" name="Meeting_time" required size="25"><br>
-    <br>
-    <label for="message">Message:</label>
-    <textarea id="message" name="message" required></textarea><br>
-    <br>
-    <label for="Follow_up">Follow Up On:</label>
-    <input type="datetime-local" id="Follow_up" name="Follow_up" required size="25"><br>
-    <br>
-    <input type="submit" value="Submit">
-  </form>
+</style>
+<body>
+  <div class="container">
+    <div class="form-container">
+    <h1 style="color: blue;">DSR Form Submission</h1>
+
+    <form action="/submit" method="POST">
+      <label for="Date" >Date: </label>
+      <input type="datetime-local" id="Date" name="Date" ><br>
+      <br>
+      <label for="emp_name" >Employee Name:</label>
+      <input type="text" id="emp_name" name="emp_name" required size="25"><br>
+      <br>
+      <label for="Company_name" >Company Name:</label>
+      <input type="text" id="Company_name" name="Company_name" required size="25"><br>
+      <br>
+      <label for="Customer_name" >Customer Name:</label>
+      <input type="text" id="Customer_name" name="Customer_name" required size="25"><br>
+      <br>
+      <label for="Meeting_time" >Meeting Time:</label>
+      <input type="datetime-local" id="Meeting_time" name="Meeting_time" required size="25"><br>
+      <br>
+      <label for="message">Meeting Agenda:</label>
+      <textarea id="message" name="message" required placeholder="Enter meeting Agenda"></textarea><br>
+      <br>
+      <label for="Follow_up">Follow Up On:</label>
+      <input type="datetime-local" id="Follow_up" name="Follow_up" required size="25"><br>
+      <br>
+      <input type="submit" value="Submit">
+    </form>
+    </div>
+    <div class="image-container">
+      <img src="orient-technologies.jpeg" alt="Background Image">
+    </div>
+  </div>
 </body>
 </html>
