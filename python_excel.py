@@ -88,7 +88,11 @@ def submit():
 
     return 'Form data submitted successfully!'
 
+@app.route('/team_details', methods=['POST'])
+def emp_details():
+    return "Hello these are the details"
+
+
 if __name__ == '__main__':
     app.run()
-
 
