@@ -19,7 +19,7 @@ def signup():
 
 @app.route('/signin',methods=['GET','POST'])
 def signin():
-    return render_template('signin_2.html')
+    return render_template('signin.html')
 
 @app.route('/submited', methods=['POST'])
 def submited():
