@@ -69,20 +69,35 @@
       background-color: #245106;
       text-align: center;
     }
+    .login_form #username_error,
+    .login_form #password_error{
+      margin-top: 5px ;
+      width: 345px;
+      font-size: 18px;
+      color: #C62828;
+      background: rgba(255, 0, 0, 0.1) ;
+      text-align: center;
+      padding: 5px 8px;
+      border-radius: 3px;
+      border: 1px solid #EF9A9A;
+      display: none;
+    }
 </style>
 <body>
   <div class="container" >
     <div class="form-container" >
         <h1>LOGIN TO ACCOUNT</h1>
-        <form action="/submited" method="POST">
+        <form class="login_form" action="/submited" method="post" name="form">
             <center>
                 <label for="username" >USERNAME:</label>
                 <input type="text" id="username" name="username" required size="25"><br>
+                <div id="username_error">Please fill up your username</div>
                 <br>
                 <label for="password" >PASSWORD:</label>
                 <input type="password" id="password" name="password" required size="25"><br>
+                <div id="password_error">Please fill up your password</div>
                 <br>
-                <input type="submit" value="Submit">    
+                <input type="submit" value="Login"> 
             </center>
           </form>
     </div>

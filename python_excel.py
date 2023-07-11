@@ -92,15 +92,15 @@ def submit():
 def view_emp_details():
     return render_template('view_details.html')
 
-@app.route('/team_details', methods=['GET','POST'])
-def emp_details(result1):
+@app.route('/team_details', methods=['POST'])
+def emp_details(result):
 #    return "Hello these are the details"
     df = pd.read_excel('Employees_details.xlsx')
     # Filtering data based on the manager's team
-    team = request.form['team']
+    team = request.Dropdown['department']
     team_data = df[df['Team'] == team]
     # Filtering data based on the manager's name
-    manager_data = team_data[team_data['MANAGER'] == result1]
+    manager_data = team_data[team_data['MANAGER'] == result]
     # Display details
     if not manager_data.empty:
         print(manager_data)
