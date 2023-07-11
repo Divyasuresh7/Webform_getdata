@@ -8,6 +8,7 @@
     text-align: center;
     transition: ease-in;
     color:rgb(9, 92, 106);
+
   }
   body {
     font-family: Arial, Helvetica, sans-serif;
@@ -49,6 +50,10 @@
   img {
       max-width: 100%;
       height: auto;
+  }
+  .View_employee_details {
+    width: 100px;
+    text-align: center;
   }
   input[type="text"],
   textarea,
@@ -113,6 +118,11 @@
   </div>
   <div class="image-container">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLR8Ns8iWIW9Iw-2swpH5ceRG_g3aNurflpw&usqp=CAU" alt="Background Image">
+  </div>
+  <div class="View_employee_details">
+    <form action="/view_team_details" method="post">  
+      <input type="submit" value="VIEW EMPLOYEE DETAILS">
+    </form>
   </div>
 </body>
 </html>

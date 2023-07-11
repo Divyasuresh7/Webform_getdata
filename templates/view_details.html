@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+    /* The container must be positioned relative: */
+    .custom-select {
+    position: relative;
+    font-family: Arial;
+    }
+
+    .custom-select select {
+    display: none; /*hide original SELECT element: */
+    }
+
+    .select-selected {
+    background-color: DodgerBlue;
+    }
+
+    /* Style the arrow inside the select element: */
+    .select-selected:after {
+    position: absolute;
+    content: "";
+    top: 14px;
+    right: 10px;
+    width: 0;
+    height: 0;
+    border: 6px solid transparent;
+    border-color: #fff transparent transparent transparent;
+    }
+
+    /* Point the arrow upwards when the select box is open (active): */
+    .select-selected.select-arrow-active:after {
+    border-color: transparent transparent #fff transparent;
+    top: 7px;
+    }
+
+    /* style the items (options), including the selected item: */
+    .select-items div,.select-selected {
+    color: #ffffff;
+    padding: 8px 16px;
+    border: 1px solid transparent;
+    border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+    cursor: pointer;
+    }
+
+    /* Style items (options): */
+    .select-items {
+    position: absolute;
+    background-color: DodgerBlue;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 99;
+    }
+
+    /* Hide the items when the select box is closed: */
+    .select-hide {
+    display: none;
+    }
+
+    .select-items div:hover, .same-as-selected {
+    background-color: rgba(0, 0, 0, 0.1);
+    }
+
+    input[type="submit"] {
+      background-color: #4285F4;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+    input[type="submit"]:hover {
+      background-color: #3367D6;
+      text-align: center;
+    }
+</style>
+<body>
+<div class="custom-select" style="width:200px;">
+    <form action="/team_details" method="post">
+        <label for="team"><h2>Choose a Team:</h2></label>
+        <select name="department" id="department">
+            <option value="Marketing" aria-setsize="10">Marketing</option>
+            <option value="HR">HR</option>
+            <option value="Technical">Technical</option>
+            <option value="Accounts">Accounts</option>
+            <option value="Sales">Sales</option>
+        </select>
+        <input type="submit" value="submit">
+    </form>
+</div>
+</body>
+</html>

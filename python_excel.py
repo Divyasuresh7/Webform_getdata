@@ -24,6 +24,7 @@ def signin():
 @app.route('/submited', methods=['POST'])
 def submited():
     # To get data from the form
+    global result1
     result1 = request.form['username']
     result2 = request.form['password']
 
@@ -88,11 +89,24 @@ def submit():
 
     return 'Form data submitted successfully!'
 
-@app.route('/team_details', methods=['POST'])
-def emp_details():
-    return "Hello these are the details"
+@app.route('/view_team_details', methods=['GET','POST'])
+def view_emp_details():
+    return render_template('view_details.html')
 
+@app.route('/team_details', methods=['GET','POST'])
+def emp_details(result1):
+#    return "Hello these are the details"
+    df = pd.read_excel('Employees_details.xlsx')
+    # Filtering data based on the manager's team
+    team = request.form['team']
+    team_data = df[df['Team'] == team]
+    # Filtering data based on the manager's name
+    manager_data = team_data[team_data['MANAGER'] == result1]
+    # Display details
+    if not manager_data.empty:
+        print(manager_data)
+    else:
+        return "No employees found for the team."
 
 if __name__ == '__main__':
     app.run()
-
