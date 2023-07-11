@@ -24,7 +24,6 @@ def signin():
 @app.route('/submited', methods=['POST'])
 def submited():
     # To get data from the form
-    global result1
     result1 = request.form['username']
     result2 = request.form['password']
 
