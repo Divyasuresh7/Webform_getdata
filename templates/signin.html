@@ -33,6 +33,10 @@
       padding: 20px;
       margin-left: auto;
       margin-right: auto;
+      width: 1400px;
+      height: 650px;
+      background: url(https://img.freepik.com/premium-photo/natural-marble-pattern-background_1258-22160.jpg) no-repeat;
+      background-size:cover;
     }
     .form-container {
       width: 400px;
@@ -47,7 +51,8 @@
         display: block;
         margin-bottom: 10px;
         color: #333333;
-        text-align: center;
+        text-align: left;
+        font-weight: bold;
         font-family: 'Times New Roman', Times, serif;
     }
     h1 {
@@ -62,7 +67,7 @@
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    margin: 45px 0 30px 0;
+    margin: 30px 0 30px 0;
     height: 35px;
     width: 300px;
     font-size: 18px;
@@ -85,6 +90,12 @@
       border: 1px solid #EF9A9A;
       display: none;
     }
+    .user_title,
+    .pass_title {
+      text-align: left;
+      width: 300px;
+      height: 30px;
+    }
 </style>
 <body>
   <div class="container" >
@@ -92,11 +103,11 @@
         <h1>LOGIN TO ACCOUNT</h1>
         <form class="login_form" action="/submited" method="post" name="form">
             <center>
-                <label for="username" >USERNAME:</label>
+              <div class="user_title"><label for="username" >USERNAME:</label></div>
                 <input type="text" id="username" name="username" required size="25"><br>
                 <div id="username_error">Please fill up your username</div>
                 <br>
-                <label for="password" >PASSWORD:</label>
+                <div class="pass_title"><label for="password" >PASSWORD:</label></div>
                 <input type="password" id="password" name="password" required size="25"><br>
                 <div id="password_error">Please fill up your password</div>
                 <br>

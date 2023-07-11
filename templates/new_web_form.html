@@ -83,6 +83,27 @@
       background-color: #3367D6;
       text-align: center;
     }
+    .details button{
+      font-family:Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      text-align: center;
+      color: white;
+      margin: 45px 0 30px 0;
+      height: 45px;
+      width: 365px;
+      font-size: 20px;
+      color: white;
+      outline: none;
+      cursor: pointer;
+      background: rgb(9, 92, 106);;
+      border-radius: 6px;
+      border: 1px solid #046a7c;
+      transition: .5s;
+    }
+    .details button:hover{
+      background-color: rgb(6, 62, 104);;
+      text-align: center;
+    }
 
 </style>
 <body>
@@ -120,8 +141,8 @@
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLR8Ns8iWIW9Iw-2swpH5ceRG_g3aNurflpw&usqp=CAU" alt="Background Image">
   </div>
   <div class="View_employee_details">
-    <form action="/view_team_details" method="post">  
-      <input type="submit" value="VIEW EMPLOYEE DETAILS">
+    <form action="/view_team_details" method="post" class="details">  
+      <button type="submit">VIEW EMPLOYEE DETAILS</button>
     </form>
   </div>
 </body>
