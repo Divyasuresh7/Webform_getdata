@@ -12,8 +12,9 @@
   }
   body {
     font-family: Arial, Helvetica, sans-serif;
-    background-color: #f2f2f2;
+    background-color: #047373;
     text-align: center;
+    size: cover;
   }
   label {
     display: block;
@@ -27,12 +28,12 @@
       display: flex;
       width: auto;
       justify-content: center;
-      background-color:cadetblue;
+      background-color:rgb(9, 92, 106);
       align-items: center;
       padding: 20px;
       position: absolute;
       top: auto;
-      left: 35%;
+      left: 55%;
   }
   .form-container {
       width: 400px;
@@ -107,14 +108,32 @@
     }
 
 </style>
-<body>
+<body onload="populateDateTime()">
   <div class="container"> 
     <div class="form-container">
     <h1>DSR Form Submission</h1>
     <form action="/submit" method="POST" name="DSR_form">
       <label for="Date" >Date: </label>
-      <input type="datetime-local" id="Date" name="Date" required oninvalid="this.setCustomValidity('Pls enter Date')"><br>
+      <input type="datetime-local" id="Date" name="Date" required><br>
       <br>
+      <script>
+        function populateDateTime() {
+          var dateTime = new Date();
+          
+          // Extract date components
+          var year = dateTime.getFullYear();
+          var month = ('0' + (dateTime.getMonth() + 1)).slice(-2);
+          var day = ('0' + dateTime.getDate()).slice(-2);
+          
+          // Extract time components
+          var hours = ('0' + dateTime.getHours()).slice(-2);
+          var minutes = ('0' + dateTime.getMinutes()).slice(-2);
+          
+          // Set the value in the input field
+          var datetimeField = document.getElementById('Date');
+          datetimeField.value = year + '-' + month + '-' + day + 'T' + hours + ':' + minutes;
+        }
+      </script>
       <label for="emp_name" >Employee Name:</label>
       <input type="text" id="emp_name" name="emp_name" required size="25" required oninvalid="this.setCustomValidity('Employee name?')"><br>
       <br>
