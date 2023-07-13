@@ -6,12 +6,18 @@
   <title>Document</title>
 </head>
 <style>
-  select {
-    color: black;
-    text-align: center;
-
+  button {
+    width: 120px;
+    height: 70px;
+    font-weight: bold;
+    font-family: 'Courier New', Courier, monospace;
+    color:rgb(5, 109, 109);
   }
 </style>
 <body>
+  {% for i in x%}
+  <button>{{i}}</button>
+  <br><br>
+  {% endfor %}
 </body>
 </html>
