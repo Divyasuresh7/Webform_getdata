@@ -24,8 +24,10 @@ def signin():
 @app.route('/submited', methods=['POST'])
 def submited():
     # To get data from the form
+    global result
     result1 = request.form['username']
     result2 = request.form['password']
+    result=result1
 
     def validate_credentials(username, password):
         with open('username_password.csv', 'r') as file:
@@ -92,20 +94,19 @@ def submit():
 def view_emp_details():
     return render_template('view_details.html')
 
-@app.route('/team_details', methods=['POST'])
-def emp_details(result):
-#    return "Hello these are the details"
-    df = pd.read_excel('Employees_details.xlsx')
-    # Filtering data based on the manager's team
-    team = request.Dropdown['department']
-    team_data = df[df['Team'] == team]
-    # Filtering data based on the manager's name
-    manager_data = team_data[team_data['MANAGER'] == result]
-    # Display details
-    if not manager_data.empty:
-        print(manager_data)
-    else:
-        return "No employees found for the team."
+@app.route('/team_details', methods=['GET','POST'])
+def emp_details():
+    df = pd.read_excel('Employee_details.xlsx',sheet_name='Sheet1')
+    team_data = df[df['MANAGER'] == result]['NAME']
+    team_data2 = team_data.to_string(index=False)
+    team_data_list = team_data2.split()
+    def emp_check():
+        if not team_data.empty:
+            return team_data_list
+        else:
+            return "No employees found for this manager."
+    return render_template('view_details.html',x=emp_check())
 
 if __name__ == '__main__':
     app.run()
+
