@@ -29,23 +29,30 @@
     .container {
       display: flex;
       justify-content: space-between;
-      align-items: center;
       padding: 20px;
       margin-left: auto;
       margin-right: auto;
-      width: 1400px;
-      height: 650px;
-      background: url(https://img.freepik.com/premium-photo/natural-marble-pattern-background_1258-22160.jpg) no-repeat;
-      background-size:cover;
+      width: 300px;
+      height: 300px;
     }
     .form-container {
-      width: 400px;
+      width: 370px;
+      height: 350px;
       background-color: #ffffff;
       padding: 20px;
       border-radius: 5px;
       box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
-      margin-left: auto;
+      margin-left: 55%;
       margin-right: auto;
+      margin-top: 30%;
+      margin-bottom: auto;
+
+    }
+    body {
+      background: rgb(28, 109, 112);;
+      background-size: cover;
+      width: 600px;
+      height: 600px;
     }
     label {
         display: block;
@@ -57,19 +64,25 @@
     }
     h1 {
         text-align: center;
-        color:cadetblue;
+        color:rgb(28, 109, 112);
         font-family: 'Times New Roman', Times, serif;
     }
+    .heading {
+      text-align: center;
+      width: 370px;
+      height: 60px;
+    }
     input[type="submit"] {
-    background-color: #13b80d;
+    background-color: #0da008;
     color: white;
     padding: 10px 15px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    margin: 30px 0 30px 0;
+    margin: 15px 0 15px 0;
     height: 35px;
     width: 300px;
+    text-align: center;
     font-size: 18px;
     font-family: 'Times New Roman', Times, serif
     }
@@ -96,19 +109,36 @@
       width: 300px;
       height: 30px;
     }
+    .login_form {
+      height: 250px;
+      text-align: center;
+    }
+    .image-background {
+      margin-left: 2%;
+      margin-right: 0%;
+      margin-top: 25%;
+    }
+    img {
+      width: 600px;
+      height:500px;
+      background-size: cover;
+    }
 </style>
 <body>
   <div class="container" >
+    <div class="image-background">
+      <img src="https://images-platform.99static.com//koWJWqyHOs3oM1tnqZylk5EmWWo=/0x0:1200x1200/fit-in/500x500/99designs-contests-attachments/118/118544/attachment_118544934" alt="Background Image">
+    </div>
     <div class="form-container" >
-        <h1>LOGIN TO ACCOUNT</h1>
+      <div class="heading"><h1>LOGIN TO ACCOUNT</h1></div>
         <form class="login_form" action="/submited" method="post" name="form">
             <center>
               <div class="user_title"><label for="username" >USERNAME:</label></div>
-                <input type="text" id="username" name="username" required size="25"><br>
+                <input type="text" id="username" name="username" required size="25" required oninvalid="this.setCustomValidity('Please enter the username')"><br>
                 <div id="username_error">Please fill up your username</div>
                 <br>
                 <div class="pass_title"><label for="password" >PASSWORD:</label></div>
-                <input type="password" id="password" name="password" required size="25"><br>
+                <input type="password" id="password" name="password" required size="25" required oninvalid="this.setCustomValidity('Follow up on?')"><br>
                 <div id="password_error">Please fill up your password</div>
                 <br>
                 <input type="submit" value="Login"> 

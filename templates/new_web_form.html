@@ -44,7 +44,8 @@
       height: 100%;
   }
   .image-container {
-      width: 400px;
+      width: 300px;
+      height: 50px;
       text-align: center;
   }
   img {
@@ -110,8 +111,7 @@
   <div class="container"> 
     <div class="form-container">
     <h1>DSR Form Submission</h1>
-
-    <form action="/submit" method="POST">
+    <form action="/submit" method="POST" name="DSR_form">
       <label for="Date" >Date: </label>
       <input type="datetime-local" id="Date" name="Date" required oninvalid="this.setCustomValidity('Pls enter Date')"><br>
       <br>
@@ -131,7 +131,7 @@
       <textarea id="message" name="message" required placeholder="Enter meeting Agenda" required oninvalid="this.setCustomValidity('Agenda?')"></textarea><br>
       <br>
       <label for="Follow_up">Follow Up On:</label>
-      <input type="datetime-local" id="Follow_up" name="Follow_up" required size="25" required oninvalid="this.setCustomValidity('Follow up on?')"><br>
+      <input type="datetime-local" id="Follow_up" name="Follow_up" required size="25"><br>
       <br>
       <input type="submit" value="Submit">
     </form>
@@ -141,7 +141,7 @@
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLR8Ns8iWIW9Iw-2swpH5ceRG_g3aNurflpw&usqp=CAU" alt="Background Image">
   </div>
   <div class="View_employee_details">
-    <form action="/view_team_details" method="post" class="details">  
+    <form action="/team_details" method="post" class="details">  
       <button type="submit">VIEW EMPLOYEE DETAILS</button>
     </form>
   </div>
