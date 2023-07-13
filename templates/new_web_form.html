@@ -150,7 +150,11 @@
       <textarea id="message" name="message" required placeholder="Enter meeting Agenda" required oninvalid="this.setCustomValidity('Agenda?')"></textarea><br>
       <br>
       <label for="Follow_up">Follow Up On:</label>
-      <input type="datetime-local" id="Follow_up" name="Follow_up" required size="25"><br>
+      <input type="datetime-local" id="Follow_up" name="Follow_up" required size="25" required /><br>
+      <script>
+        const input = document.getElementById('Follow_up');
+        input.removeAttribute('required');
+      </script>
       <br>
       <input type="submit" value="Submit">
     </form>
