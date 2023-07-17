@@ -15,7 +15,7 @@ def home():
 
 @app.route('/signup',methods=['GET','POST'])
 def signup():
-    return render_template('new_web_form.html')
+    return render_template('new_web_form.html',empl_name=result)
 
 @app.route('/signin',methods=['GET','POST'])
 def signin():

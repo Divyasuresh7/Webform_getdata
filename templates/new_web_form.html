@@ -145,16 +145,7 @@
         }
       </script>
       <label for="emp_name" >Employee Name:</label>
-      <input type="text" id="emp_name" name="emp_name" required size="25" required><br>
-      <script>
-        function Autofill_username() {
-          var username = document.getElementById('emp_name');
-          <py-script>
-            import result from "python_excel_2.py";
-          </py-script>
-          username.value = result;
-        }
-      </script>
+      <input type="text" id="emp_name" name="emp_name" required size="25" value={{empl_name}} required><br>
       <br>
       <label for="Company_name" >Company Name:</label>
       <input type="text" id="Company_name" name="Company_name" required size="25" required oninvalid="this.setCustomValidity('Company name?')"><br>
