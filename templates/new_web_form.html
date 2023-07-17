@@ -46,16 +46,18 @@
   }
   .image-container {
       width: 300px;
-      height: 50px;
+      height: 70px;
       text-align: center;
   }
   img {
       max-width: 100%;
-      height: auto;
+      height: 100%;
+      left: 20%;
   }
   .View_employee_details {
-    width: 100px;
+    width: 370px;
     text-align: center;
+    left: 20%;
   }
   input[type="text"],
   textarea,
@@ -94,7 +96,6 @@
       height: 45px;
       width: 365px;
       font-size: 20px;
-      color: white;
       outline: none;
       cursor: pointer;
       background: rgb(9, 92, 106);;
@@ -106,9 +107,21 @@
       background-color: rgb(6, 62, 104);;
       text-align: center;
     }
+    .side-img {
+      width: 600px;
+      height: 650px;
+      left: 20%;
+      margin-top: 2%;
+      margin-bottom: 8%;
+    }
+    .side-img img{
+      width:100%;
+      height:100%;
+      margin-left: 3%;
+    }
 
 </style>
-<body onload="populateDateTime()">
+<body onload="populateDateTime();Autofill_username()" >
   <div class="container"> 
     <div class="form-container">
     <h1>DSR Form Submission</h1>
@@ -119,23 +132,29 @@
       <script>
         function populateDateTime() {
           var dateTime = new Date();
-          
           // Extract date components
           var year = dateTime.getFullYear();
           var month = ('0' + (dateTime.getMonth() + 1)).slice(-2);
           var day = ('0' + dateTime.getDate()).slice(-2);
-          
           // Extract time components
           var hours = ('0' + dateTime.getHours()).slice(-2);
           var minutes = ('0' + dateTime.getMinutes()).slice(-2);
-          
           // Set the value in the input field
           var datetimeField = document.getElementById('Date');
           datetimeField.value = year + '-' + month + '-' + day + 'T' + hours + ':' + minutes;
         }
       </script>
       <label for="emp_name" >Employee Name:</label>
-      <input type="text" id="emp_name" name="emp_name" required size="25" required oninvalid="this.setCustomValidity('Employee name?')"><br>
+      <input type="text" id="emp_name" name="emp_name" required size="25" required><br>
+      <script>
+        function Autofill_username() {
+          var username = document.getElementById('emp_name');
+          <py-script>
+            import result from "python_excel_2.py";
+          </py-script>
+          username.value = result;
+        }
+      </script>
       <br>
       <label for="Company_name" >Company Name:</label>
       <input type="text" id="Company_name" name="Company_name" required size="25" required oninvalid="this.setCustomValidity('Company name?')"><br>
@@ -167,6 +186,9 @@
     <form action="/team_details" method="post" class="details">  
       <button type="submit">VIEW EMPLOYEE DETAILS</button>
     </form>
+  </div>
+  <div class="side-img">
+    <img name ="side" src="https://img.freepik.com/free-vector/forms-concept-illustration_114360-4957.jpg?w=2000" alt="side-img">
   </div>
 </body>
 </html>

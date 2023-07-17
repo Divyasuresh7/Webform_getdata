@@ -90,10 +90,6 @@ def submit():
 
     return 'Form data submitted successfully!'
 
-@app.route('/view_team_details', methods=['GET','POST'])
-def view_emp_details():
-    return render_template('view_details.html')
-
 @app.route('/team_details', methods=['GET','POST'])
 def emp_details():
     df = pd.read_excel('Employee_details.xlsx',sheet_name='Sheet1')
@@ -107,6 +103,14 @@ def emp_details():
             return "No employees found for this manager."
     return render_template('view_details.html',x=emp_check())
 
+@app.route('/details', methods=['GET','POST'])
+def view_emp_details():
+    load_workbook(EXCEL_FILE_NAME)
+    df = pd.read_excel(EXCEL_FILE_NAME)
+    name = request.form['employee_name']
+    team_data = df[df['Employee Name'] == name]
+
+    return render_template('details.html',team=team_data)
+
 if __name__ == '__main__':
     app.run()
-
