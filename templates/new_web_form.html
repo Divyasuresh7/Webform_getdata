@@ -112,6 +112,8 @@
       border-collapse: collapse;
       width: 100%;
       height: 100%;
+      margin-left: 30px;
+      background-color: white;
     }
 
     .calendar th, .calendar td {
@@ -128,10 +130,17 @@
       cursor: pointer;
     }
     .calendar_div {
-      width: 450px;
-      height: 400px;
+      width: 602px;
+      height: 540px;
       left: 20%;
-      background-color: white;
+    }
+    th {
+      width: 86px;
+      height: 36px;
+    }
+    tr {
+      height: 72px;
+      width: 86px;
     }
 </style>
 <body onload="populateDateTime();Autofill_username()" >
