@@ -3,6 +3,7 @@ from openpyxl import load_workbook,Workbook
 import datetime
 import pandas as pd
 import csv
+from django.shortcuts import render,redirect
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret-key'
@@ -20,7 +21,7 @@ def signup():
 @app.route('/signin',methods=['GET','POST'])
 def signin():
     return render_template('signin.html')
-
+0
 @app.route('/submited', methods=['POST'])
 def submited():
     # To get data from the form
@@ -90,9 +91,14 @@ def submit():
 
     return 'Form data submitted successfully!'
 
-@app.route('/team_details', methods=['GET','POST'])
+@app.route('/details_page',methods=['GET','POST'])
+def details_option(team_data_list):
+    return render_template('view_details.html',x=team_data_list)
+
+@app.route('/team_details', methods=['POST'])
 def emp_details():
     df = pd.read_excel('Employee_details.xlsx',sheet_name='Sheet1')
+    result = request.form['username']
     team_data = df[df['MANAGER'] == result]['NAME']
     team_data2 = team_data.to_string(index=False)
     team_data_list = team_data2.split()
@@ -101,16 +107,18 @@ def emp_details():
             return team_data_list
         else:
             return "No employees found for this manager."
-    return render_template('view_details.html',x=emp_check())
+    return details_option(emp_check())
 
-@app.route('/details', methods=['GET','POST'])
+def view_details(team_data2):
+    return render_template('details.html',team_data2=team_data2)
+
+@app.route('/details', methods=['POST'])
 def view_emp_details():
     load_workbook(EXCEL_FILE_NAME)
     df = pd.read_excel(EXCEL_FILE_NAME)
     name = request.form['employee_name']
-    team_data = df[df['Employee Name'] == name]
-
-    return render_template('details.html',team=team_data)
+    team_data2 = df.loc[df['Employee Name'] == name]
+    return view_details(team_data2)
 
 if __name__ == '__main__':
     app.run()
