@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request,redirect,url_for
+from flask import Flask, render_template, request,redirect,url_for,jsonify
 from openpyxl import load_workbook,Workbook
 import datetime
 import pandas as pd
@@ -37,11 +37,21 @@ def submited():
                 if username == stored_username and password == stored_password:
                     return True
         return False
+    
     if validate_credentials(result1,result2):
         return render_template('new_web_form.html',empl_name=result)
     else:
         return "Invalid username or password."
-    
+
+def read_excel_data():
+    df = pd.read_excel(EXCEL_FILE_NAME)
+    follow_up_data = df[['Employee Name', 'Follow Up']].dropna().to_dict(orient='records')
+    return follow_up_data
+
+@app.route('/get_follow_up_dates')
+def get_follow_up_dates():
+    follow_up_dates = read_excel_data()
+    return jsonify(follow_up_dates)
 
 @app.route('/submit', methods=['POST'])
 def submit():
