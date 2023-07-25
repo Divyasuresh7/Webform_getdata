@@ -89,14 +89,10 @@ def submit():
 
     return 'Form data submitted successfully!'
 
-@app.route('/details_page',methods=['POST'])
-def details_option(team_data_list):
-    return render_template('view_details.html',x=team_data_list)
-
-@app.route('/team_details', methods=['POST'])
-def emp_details():
+@app.route('/details_page',methods=['GET','POST'])
+def details_option():
     df = pd.read_excel('Employee_details.xlsx',sheet_name='Sheet1')
-    result = request.form['username']
+    result = request.form['emp_name']
     team_data = df[df['MANAGER'] == result]['NAME']
     team_data2 = team_data.to_string(index=False)
     team_data_list = team_data2.split()
@@ -106,6 +102,20 @@ def emp_details():
         else:
             return "No employees found for this manager."
     return render_template('view_details.html',x=emp_check())
+
+# @app.route('/team_details', methods=['POST'])
+# def emp_details():
+#     df = pd.read_excel('Employee_details.xlsx',sheet_name='Sheet1')
+#     result = request.form['username']
+#     team_data = df[df['MANAGER'] == result]['NAME']
+#     team_data2 = team_data.to_string(index=False)
+#     team_data_list = team_data2.split()
+#     def emp_check():
+#         if not team_data.empty:
+#             return team_data_list
+#         else:
+#             return "No employees found for this manager."
+#     return redirect('/details_page',emp_check())
 
 @app.route('/view_inividual_details',methods=['GET','POST'])
 def view_details(team_data2):
@@ -121,4 +131,5 @@ def view_emp_details():
     return view_details(team_data2)
 
 if __name__ == '__main__':
+    app.debug = True
     app.run()
