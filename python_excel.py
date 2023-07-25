@@ -44,11 +44,16 @@ def submited():
         return "Invalid username or password."
 
 def read_excel_data():
-    df = pd.read_excel(EXCEL_FILE_NAME)
-    follow_up_data = df[['Employee Name', 'Follow Up']].dropna().to_dict(orient='records')
+    df = pd.read_excel('form_data.xlsx')
+    follow_up_data = {}
+    for _, row in df.iterrows():
+        date = row['Follow Up']
+        agenda = row['Agenda']
+        if pd.notnull(date) and pd.notnull(agenda):
+            follow_up_data[date] = agenda
     return follow_up_data
 
-@app.route('/get_follow_up_dates')
+@app.route('/get_follow_up_data')
 def get_follow_up_dates():
     follow_up_dates = read_excel_data()
     return jsonify(follow_up_dates)

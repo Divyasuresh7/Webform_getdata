@@ -3,7 +3,21 @@
 <head>
   <title>Form Submission</title>
   <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js'></script>
-  <script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css">
+  <!-- Include Moment.js for date handling (required by FullCalendar) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+  <!-- Include FullCalendar.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
+  <!-- <script>
+    fetchFollowUpData();
+    document.addEventListener('DOMContentLoaded', function() 
+    {
+      var calendarEl = document.getElementById('calendar_main');
+      var calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth'
+      });
+      calendar.render();
+    });
     function renderFollowUpDates(followUpData) 
     {
       // Convert the data into an array of events compatible with FullCalendar
@@ -18,23 +32,15 @@
     async function fetchFollowUpData() 
     {
         try {
-            const response = await fetch('get_follow_up_dates');
+            const response = await fetch('http://127.0.0.1:5000/get_follow_up_dates');
             const data = await response.json();
             renderFollowUpDates(data); //to render the dates
         } catch (error) {
             console.error('Error fetching follow-up data:', error);
         }
     }
-    fetchFollowUpData();
-    document.addEventListener('DOMContentLoaded', function() {
-      var calendarEl = document.getElementById('calendar_main');
-      var calendar = new FullCalendar.Calendar(calendarEl, {
-        initialView: 'dayGridMonth'
-      });
-      calendar.render();
-    });
 
-  </script>
+  </script> -->
 </head>
 <style>
   h1 {
@@ -239,9 +245,7 @@
     </form>
   </div>
   <div class="calendar_div" id="calendar_main">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
-    <script src="app.js"></script>
+    <script src="./app.js"></script>
     </script>
   </div>
 </body>
