@@ -55,7 +55,7 @@
       left: 20%;
   }
   .View_employee_details {
-    width: 370px;
+    width: 3px;
     text-align: center;
     left: 20%;
   }
@@ -75,7 +75,10 @@
   }
   input[type="submit"] {
       background-color: #4285F4;
+      font-weight: bold;
       color: white;
+      width: 120px;
+      height: 45px;
       padding: 10px 20px;
       border: none;
       border-radius: 4px;
@@ -84,7 +87,7 @@
       margin-top: 10px;
     }
     input[type="submit"]:hover {
-      background-color: #3367D6;
+      background-color: #0d3896;
       text-align: center;
     }
     .details button{
@@ -123,31 +126,31 @@
     }
 
     .calendar th {
-      background-color: #f2f2f2;
+      background-color: #dbe3e1;
     }
 
     .calendar td {
       cursor: pointer;
     }
     .calendar_div {
-      width: 602px;
-      height: 540px;
+      width: 616px;
+      height: 546px;
       left: 20%;
     }
     th {
-      width: 86px;
+      width: 88px;
       height: 36px;
     }
     tr {
       height: 72px;
-      width: 86px;
+      width: 88px;
     }
 </style>
 <body onload="populateDateTime();Autofill_username()" >
   <div class="container"> 
     <div class="form-container">
     <h1>DSR Form Submission</h1>
-    <form action="/submit" method="POST" name="DSR_form">
+    <form action="/submit" method="POST" id="DSR_form">
       <label for="Date" >Date: </label>
       <input type="datetime-local" id="Date" name="Date" required><br>
       <br>
@@ -193,7 +196,7 @@
     </div>
   </div>
   <div class="image-container">
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLR8Ns8iWIW9Iw-2swpH5ceRG_g3aNurflpw&usqp=CAU" alt="Background Image">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLR8Ns8iWIW9Iw-2swpH5ceRG_g3aNurflpw&usqp=CAU">
   </div>
   <div class="View_employee_details">
     <form action="/details_page" method="post" class="details">  
@@ -236,7 +239,8 @@
 
           // Fill the calendar with days
           let dayCounter = 1;
-          for (let week = 0; week < 6; week++) {
+          for (let week = 0; week < 6; week++) 
+          {
             const row = document.createElement("tr");
 
             for (let day = 0; day < 7; day++) {
@@ -244,7 +248,8 @@
               if (week === 0 && day < startingDayOfWeek) {
                 // Empty cells before the first day of the month
                 cell.innerHTML = "&nbsp;";
-              } else if (dayCounter <= numDaysInMonth) {
+              } 
+              else if (dayCounter <= numDaysInMonth) {
                 // Fill cells with day numbers
                 cell.textContent = dayCounter;
                 cell.addEventListener("click", function () {
