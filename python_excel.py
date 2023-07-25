@@ -23,10 +23,10 @@ def signin():
 @app.route('/signup', methods=['POST'])
 def submited():
     # To get data from the form
-    global result
     result1 = request.form['username']
     result2 = request.form['password']
-    result=result1
+    global result
+    result = result1
 
     def validate_credentials(username, password):
         with open('username_password.csv', 'r') as file:
@@ -41,6 +41,7 @@ def submited():
         return render_template('new_web_form.html',empl_name=result)
     else:
         return "Invalid username or password."
+    
 
 @app.route('/submit', methods=['POST'])
 def submit():
@@ -92,30 +93,31 @@ def submit():
 @app.route('/details_page',methods=['GET','POST'])
 def details_option():
     df = pd.read_excel('Employee_details.xlsx',sheet_name='Sheet1')
-    result = request.form['emp_name']
+    result = "Ridhima"
+    # result = request.form['username']
     team_data = df[df['MANAGER'] == result]['NAME']
     team_data2 = team_data.to_string(index=False)
     team_data_list = team_data2.split()
+    no_of_hrs =[]
+    dff = pd.read_excel('form_data.xlsx') #data from form
+    for i in team_data_list:
+        emp_names = dff[dff['Employee Name']==i]
+        team_data2 = emp_names.to_string(index=False)
+        if i in team_data2:
+            no_of_hrs.append(len(emp_names))
     def emp_check():
         if not team_data.empty:
             return team_data_list
         else:
             return "No employees found for this manager."
-    return render_template('view_details.html',x=emp_check())
-
-# @app.route('/team_details', methods=['POST'])
-# def emp_details():
-#     df = pd.read_excel('Employee_details.xlsx',sheet_name='Sheet1')
-#     result = request.form['username']
-#     team_data = df[df['MANAGER'] == result]['NAME']
-#     team_data2 = team_data.to_string(index=False)
-#     team_data_list = team_data2.split()
-#     def emp_check():
-#         if not team_data.empty:
-#             return team_data_list
-#         else:
-#             return "No employees found for this manager."
-#     return redirect('/details_page',emp_check())
+    names = emp_check()
+    data={}
+    for key in names:
+        for value in no_of_hrs:
+            data[key] = value
+            no_of_hrs.remove(value)
+            break
+    return render_template('view_details.html',data=data)
 
 @app.route('/view_inividual_details',methods=['GET','POST'])
 def view_details(team_data2):
