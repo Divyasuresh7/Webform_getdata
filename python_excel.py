@@ -4,6 +4,8 @@ import datetime
 import pandas as pd
 import csv
 from django.shortcuts import render,redirect
+import calendar 
+from calendar import HTMLCalendar
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret-key'
@@ -14,15 +16,11 @@ x = datetime.datetime.now()
 def home():
     return render_template('base.html')
 
-@app.route('/signup',methods=['GET','POST'])
-def signup():
-    return render_template('new_web_form.html',empl_name=result)
-
 @app.route('/signin',methods=['GET','POST'])
 def signin():
     return render_template('signin.html')
-0
-@app.route('/submited', methods=['POST'])
+
+@app.route('/signup', methods=['POST'])
 def submited():
     # To get data from the form
     global result
@@ -40,7 +38,7 @@ def submited():
                     return True
         return False
     if validate_credentials(result1,result2):
-        return signup()
+        return render_template('new_web_form.html',empl_name=result)
     else:
         return "Invalid username or password."
 
@@ -91,7 +89,7 @@ def submit():
 
     return 'Form data submitted successfully!'
 
-@app.route('/details_page',methods=['GET','POST'])
+@app.route('/details_page',methods=['POST'])
 def details_option(team_data_list):
     return render_template('view_details.html',x=team_data_list)
 
@@ -107,8 +105,9 @@ def emp_details():
             return team_data_list
         else:
             return "No employees found for this manager."
-    return details_option(emp_check())
+    return render_template('view_details.html',x=emp_check())
 
+@app.route('/view_inividual_details',methods=['GET','POST'])
 def view_details(team_data2):
     return render_template('details.html',team_data2=team_data2)
 
@@ -118,6 +117,7 @@ def view_emp_details():
     df = pd.read_excel(EXCEL_FILE_NAME)
     name = request.form['employee_name']
     team_data2 = df.loc[df['Employee Name'] == name]
+    
     return view_details(team_data2)
 
 if __name__ == '__main__':
