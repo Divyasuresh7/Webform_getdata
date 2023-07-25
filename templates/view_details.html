@@ -15,23 +15,11 @@
   }
 </style>
 <body>
+  {{x}}
   {% for i in x%}
-  <form action="/details" method="post" name="Button_option">
-    <button type="submit" id="employee_name_"+x name="employee_name">{{i}}</button>
-    <br><br>
+  <button type="submit" id="employee_name">{{i}}</button>
+  <br><br>
   {% endfor %}
-  <script>
-    document.querySelectorAll('button').forEach(occurence => 
-    {
-      let id = occurence.getAttribute('id');
-      occurence.addEventListener('click', function() 
-      {
-        console.log('A button with ID ' + id + ' was clicked!') 
-      } );
-    });
-
-// A button with ID button-1 was clicked!
-  </script>
   <div id="piechart" style="width: 900px; height: 500px; left: 45%;"></div>
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
