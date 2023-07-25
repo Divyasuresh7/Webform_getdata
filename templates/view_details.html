@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <style>
   button {
@@ -15,33 +16,43 @@
   }
 </style>
 <body>
-  {{x}}
-  {% for i in x%}
-  <button type="submit" id="employee_name">{{i}}</button>
+  <br>
+  {% for i,j in data.items()%}
+  <button type="submit" id="employee_name">{{i}} - {{j}}</button>
   <br><br>
   {% endfor %}
-  <div id="piechart" style="width: 900px; height: 500px; left: 45%;"></div>
-  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
+  <div style="width: 400px; margin: 0 auto;">
+      <canvas id="pieChart"></canvas>
+  </div>
+  <script>
+      // Access the data from the Flask backend and convert it to a format suitable for Chart.js
+      var dataFromPython = JSON.parse('{{ data | tojson | safe }}');
 
-      function drawChart() {
+      // Extract the labels and data for the chart
+      var labels = Object.keys(dataFromPython);
+      var values = Object.values(dataFromPython);
 
-        var data = google.visualization.arrayToDataTable([
-          ['Task', 'Hours per Day'],
-          ['Divya', 11],
-          ['Shubham',14]
-        ]);
-
-        var options = {
-          title: 'Employee Meeting Time Comparison'
-        };
-
-        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-
-        chart.draw(data, options);
-      }
-    </script>
+      // Create the pie chart
+      var ctx = document.getElementById('pieChart').getContext('2d');
+      var pieChart = new Chart(ctx, {
+          type: 'pie',
+          data: {
+              labels: labels,
+              datasets: [{
+                  data: values,
+                  backgroundColor: [
+                      'rgba(255, 99, 132, 0.8)',
+                      'rgba(54, 162, 235, 0.8)',
+                      'rgba(255, 206, 86, 0.8)',
+                      // Add more colors if you have more data points
+                  ],
+                  borderWidth: 1
+              }]
+          },
+          options: {
+              responsive: true
+          }
+      });
+  </script>
 </body>
 </html>
